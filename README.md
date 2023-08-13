@@ -119,6 +119,7 @@ X. Change Log
 
 # Future Plans
 
+- [ ] 制作英文版文档
 - [ ] 创建 Outline 备份脚本
 
 # Change Log
