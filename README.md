@@ -1,5 +1,9 @@
 # 概述
 
+Outline 宣传图
+
+![0-outline-updated](./docs/assets/0-outline-updated.png)
+
 本文介绍了一种基于 Nginx All In One 的网络架构部署 Outline 的方法，目录结构如下：
 
 ```
@@ -66,7 +70,7 @@ X. Change Log
 - GitHub Page：[https://jiang-taibai.github.io/deploy-outline-via-nginx](https://jiang-taibai.github.io/deploy-outline-via-nginx)
 - Gitee Page: [https://jiang-taibai.gitee.io/deploy-outline-via-nginx](https://jiang-taibai.gitee.io/deploy-outline-via-nginx)
 
-# 架构图
+# Architecture Diagram
 
 ![Outline 架构图](./docs/assets/1-architecture-diagram-v2.png)
 
@@ -98,9 +102,37 @@ X. Change Log
 - **非侵入式的环境友好型**🐳: 所有服务均使用 Docker 容器化部署，不会在服务器中创建一大堆的环境变量
 - **后期调试友好型**🔧: 所有服务均使用 Docker Compose 插件部署，所有配置项、密码等都保存在了服务器中，较原先的纯 Docker 部署而言，对于后期调试无需翻找当时设置的所有配置项。
 
+# Friendly Link
+
+本文档使用了以下技术和服务：
+
+- **Outline**: [官方网站](https://www.getoutline.com/)
+- **Docker**: [官方网站](https://www.docker.com/)
+- **Docker Compose**: [官方网站](https://docs.docker.com/compose/)
+- **Nginx**: [官方网站](https://nginx.org/)
+- **Redis**: [官方网站](https://redis.io/)
+- **PostgreSQL**: [官方网站](https://www.postgresql.org/)
+- **MinIO**: [官方网站](https://min.io/)
+- **Keycloak**: [官方网站](https://www.keycloak.org/)
+
+特别感谢这些项目的贡献者们！
+
+# Future Plans
+
+- [ ] 创建 Outline 备份脚本
+
+# Change Log
+
+---
+
+- v1.0.0：2023年08月13日 22:03:24
+  - 完成第一版文档
+
+---
+
 # Contact
 
-本文于2023年08月13日完成，如有问题欢迎联系我😊: 
+本文于2023年08月13日完成第一版，如有问题欢迎联系我😊: 
 
 - emailtojiang@gmail.com
 - emailtojiang@163.com
