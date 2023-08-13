@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="description" content="Description">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel="icon" href="favicon.svg" type="image/x-icon">
+    <!-- Theme: Simple Dark -->
+    <link id="theme-style-link" rel="stylesheet"
+          href="./src/css/theme-simple-dark.css">
+    <!-- 目录跳转 -->
+    <link rel="stylesheet"
+          href="./src/css/docsify-plugin-toc.css">
+    <!-- 侧边栏图标 -->
+<!--    <link rel="stylesheet"-->
+<!--          href="./src/css/sidebar.min.css"/>-->
+    <!-- 预加载，以防卡顿 -->
+    <link rel="prefetch"
+          href="./src/css/theme-simple.css"
+          as="style">
+    <link rel="prefetch"
+          href="./src/svg/moon.svg"
+          as="image">
+    <link rel="prefetch"
+          href="./src/svg/sun.svg"
+          as="image">
+    <style>
+        :root {
+            /* 侧边栏样式 */
+            --sidebar-nav-pagelink-padding: 0 0 0 0;
+            --sidebar-nav-pagelink-background: transparent;
+            --sidebar-nav-pagelink-background--active: transparent;
+            --sidebar-nav-pagelink-background--collapse: transparent;
+            --sidebar-nav-pagelink-background--loaded: transparent;
+        }
+
+        /* 侧边栏文件夹与文件的样式 */
+        .file, .folder {
+            margin: 4px 0 !important;
+            padding-left: 4px !important;
+        }
+
+        @font-face {
+            font-family: 'JetBrainsMono-Regular';
+            src: url('./src/font/jetbrains/JetBrainsMono-Regular.woff2') format('woff2')
+        }
+
+        /* 覆写所有字体 */
+        * {
+            font-family: 'JetBrainsMono-Regular', 'Microsoft YaHei', 'San Francisco', Arial, 'Helvetica Neue', Helvetica, sans-serif !important;
+        }
+
+        /* 当视口宽度小于或等于 600px 时，适用于移动设备的 CSS 样式 */
+        @media (max-width: 600px) {
+            * {
+                transition: background 0.3s ease-in-out !important;
+            }
+        }
+
+        /* 当视口宽度大于 600px 时，适用于桌面设备的 CSS 样式 */
+        @media (min-width: 601px) {
+            * {
+                transition: background 0.3s ease-in-out,
+                color 0.3s ease-in-out,
+                border-color 0.3s ease-in-out !important;
+            }
+        }
+
+        .medium-zoom-image {
+            border-radius: 4px;
+        }
+
+        #theme-change-button {
+            position: fixed;
+            right: 25px;
+            top: 25px;
+            width: 25px;
+            height: 25px;
+            background-repeat: no-repeat;
+            background-image: url("https://cdn.taibai.cloud/docsify/uav-counting-investigation-report/src/svg/sun.svg");
+            background-size: cover;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            transition: background-image .15s ease-in-out .15s;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+</div>
+<script>
+    /**
+     * 添加一个主题切换按钮
+     * @param hook  事件钩子
+     * @param vm    实例
+     */
+    function ThemeSimpleDarkLightChangeable(hook, vm) {
+
+        const variableKey = "ThemeSimpleDarkLightChangeable.theme";
+
+        const ThemeConfig = {
+            light: {
+                key: "light",
+                themeHref: "./src/css/theme-simple.css",
+                imgSrc: "./src/svg/moon.svg"
+            },
+            dark: {
+                key: "dark",
+                themeHref: "./src/css/theme-simple-dark.css",
+                imgSrc: "./src/svg/sun.svg"
+            }
+        }
+
+        let currentTheme = localStorage.getItem(variableKey) || ThemeConfig.dark.key;
+
+        function changeTheme() {
+            if (currentTheme === ThemeConfig.light.key) {
+                setThemeToDark();
+            } else {
+                setThemeToLight();
+            }
+        }
+
+        function setThemeToDark() {
+            currentTheme = ThemeConfig.dark.key;
+            document.getElementById('theme-change-button').style.backgroundImage = `url("${ThemeConfig[currentTheme].imgSrc}")`;
+            document.getElementById('theme-style-link').href = ThemeConfig[currentTheme].themeHref;
+            localStorage.setItem(variableKey, currentTheme);
+        }
+
+        function setThemeToLight() {
+            currentTheme = ThemeConfig.light.key;
+            document.getElementById('theme-change-button').style.backgroundImage = `url("${ThemeConfig[currentTheme].imgSrc}")`;
+            document.getElementById('theme-style-link').href = ThemeConfig[currentTheme].themeHref;
+            localStorage.setItem(variableKey, currentTheme);
+        }
+
+        hook.ready(function () {
+            // <div id="theme-change-button"><p>.</p></div>
+            let themeChangeButton = document.createElement("div");
+            themeChangeButton.id = "theme-change-button";
+            let emptyP = document.createElement("p");
+            // emptyP.innerText = ".";
+            themeChangeButton.append(emptyP);
+            themeChangeButton.addEventListener("click", () => {
+                changeTheme();
+            })
+            let main = document.body.querySelector("main")
+            // 将按钮插入到main标签中
+            main.append(themeChangeButton);
+
+            // 如果没有设置过主题，则设置默认主题
+            if (!localStorage.getItem(variableKey)) {
+                localStorage.setItem(variableKey, ThemeConfig.dark.key);
+            } else {
+                // 设置过，就检查是否是light主题，如果是，就设置为light主题
+                if (localStorage.getItem(variableKey) === ThemeConfig.light.key) {
+                    setThemeToLight();
+                }
+            }
+        });
+
+    }
+</script>
+
+<script>
+    window.$docsify = {
+        name: '<b>Deploy Outline</b>',
+        alias: {
+            "/.*/_sidebar.md": "/_sidebar.md",
+        },
+        // 侧边栏支持，默认加载的是项目根目录下的_sidebar.md文件
+        loadSidebar: false,
+        // 最大支持渲染的标题层级
+        maxLevel: 4,
+        // // 自定义侧边栏后默认不会再生成目录，设置生成目录的最大层级，建议配置为1或者2
+        subMaxLevel: 3,
+        sidebarDisplayLevel: 3,
+        // 自动跳转到页面顶部
+        auto2top: true,
+        // 搜索功能
+        search: {
+            maxAge: 86400000,
+            paths: 'auto',
+            placeholder: '搜索',
+            noData: '找不到结果',
+            depth: 4,
+            hideOtherSidebarContent: false,
+            namespace: 'Zhongzhi Han Report',
+        },
+        //字数插件
+        count: {
+            countable: true,
+            fontsize: '0.9em',
+            color: 'rgb(90,90,90)',
+            language: 'chinese'
+        },
+        // 分页导航插件
+        pagination: {
+            previousText: '上一节',
+            nextText: '下一节',
+            crossChapter: true,
+            crossChapterText: true
+        },
+        // 文本高亮
+        'flexible-alerts': {
+            style: 'callout',
+        },
+        // 目录跳转
+        toc: {
+            tocMaxLevel: 5,
+            target: 'h1, h2, h3, h4, h5, h6',
+            ignoreHeaders: []
+        },
+        // 代码复制
+        copyCode: {
+            buttonText: 'Copy to clipboard',
+            errorText: 'Error',
+            successText: 'Copied'
+        },
+        plugins: [
+            ThemeSimpleDarkLightChangeable,
+        ]
+    }
+</script>
+
+<!-- Docsify v4 -->
+<script src="./src/js/docsify@4.js"></script>
+<!-- docsify-themeable 主题 -->
+<script src="./src/js/docsify-themeable.min.js"></script>
+<!-- 图片放大缩小支持 -->
+<script src="./src/js/zoom-image.min.js"></script>
+<!-- 搜索功能 -->
+<script src="./src/js/search.min.js"></script>
+<!-- 字数统计 -->
+<script src="./src/js/countable.min.js"></script>
+<!-- 分页导航 -->
+<!--<script src="./src/js/docsify-pagination.min.js"></script>-->
+<!-- 文本高亮 -->
+<script src="./src/js/docsify-plugin-flexible-alerts.min.js"></script>
+<!-- 侧边栏扩展与折叠 -->
+<script src="./src/js/docsify-sidebar-collapse.min.js"></script>
+<!-- 代码高亮 -->
+<script src="./src/js/prism/prism-bash.min.js"></script>
+<script src="./src/js/prism/prism-yaml.min.js"></script>
+<script src="./src/js/prism/prism-properties.min.js"></script>
+<script src="./src/js/prism/prism-nginx.min.js"></script>
+<!-- 目录跳转 -->
+<script src="./src/js/docsify-plugin-toc.min.js"></script>
+<!-- docsify-copy-code -->
+<script src="./src/js/docsify-copy-code.min.js"></script>
+<!-- docsify-tabs -->
+<script src="./src/js/docsify-tabs.js"></script>
+</body>
+</html>
