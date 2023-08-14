@@ -2,11 +2,11 @@
 
 ## I. 需求
 
-由于我希望能够有一款**可私人部署**、**多人实时协同**、**用户权限管理**、**自由分享到互联网**的**Markdown**知识库管理平台，但依次尝试了现有的腾讯文档智能文档、语雀、Obsidian、HackMD、CodiMD、Typora、思源等等，都不能很完美地满足我的需求（这并非踩一捧一，我现在就是在用 Typora 完成这篇文章，主要看实际需求）
+由于我希望能够有一款**可私人部署**、**多人实时协同**、**用户权限管理**、**自由分享到互联网**的**Markdown**知识库管理平台，但依次尝试了现有的腾讯文档智能文档、语雀、Docsify、Obsidian、HackMD、CodiMD、Typora、思源等等等等，都不能很完美地满足我的需求（这并非踩一捧一，我现在就是在用 Typora 本地完成这篇文章，再用 Docsify 部署到云端，看需求选择软件）
 
 其中 HackMD 已经很接近，唯一美中不足的是不能权限管理，要么都不能协同，要么全世界人都可以协同（等同于拥有删除权限），所以用起来还是不太放心。
 
-我也不记得在哪看到的介绍，总之在互联网的角落中发现了超级厉害的 Github 20+K⭐ 的 **Outline**: [https://github.com/outline/outline](https://github.com/outline/outline)，说实话我在中文互联网上几乎看不到它的身影和宣传视频，即使是特意去搜，也寥寥无几，这不是因为它不优秀，我总结原因有以下几点: 
+我也不记得在哪看到的介绍，总之在我快要放弃寻找的时候发现了超级厉害的 Github 20+K⭐ 的 **Outline**: [https://github.com/outline/outline](https://github.com/outline/outline)，说实话我在中文互联网上几乎看不到它的身影和宣传视频，即使是特意去搜，也寥寥无几，这不是因为它不优秀，我总结原因有以下几点: 
 
 - **名称大众化**: Outline 可以是 CSS、VPN、标题中一个普普通通的动词和名词，甚至我搜 Outline 出来的是 Obsidian 的插件……
 
@@ -18,7 +18,6 @@
 经过这几天的部署实战，摸索出了一套基于 Nginx All In One 的 Docker 网络架构部署模式，只要你的服务器是用 Nginx 代理，那么这套方法很适合你。
 
 我相信你一定能在 30 分钟内完成这一切的。
-
 
 
 ## II. Outline 简介
@@ -74,13 +73,15 @@ Outline 是一个开源的知识库和团队协作工具🧠，旨在帮助团�
 - emailtojiang@gmail.com
 - emailtojiang@163.com
 
+
+
 # 1. 架构图
 
 下图为整个项目的系统架构: 
 
-![1-architecture-diagram](./assets/1-architecture-diagram-v3.png)
+![1-architecture-diagram](./assets/1-architecture-diagram-v4.png)
 
-涉及到的Outline服务以及它的依赖服务: 
+涉及到的 Outline 服务以及它的依赖服务: 
 
 - **Outline**: 超级棒的团队多人协同文档管理开源项目！3000 端口为访问 Outline 的端口，但该端口并不暴露，由 Nginx 通过 Docker Network 方式访问
 - **Keycloak**: 一个支持 OpenID Connect（下文简称 **OIDC**）的开源项目。用于 Outline 的单点登录服务。
@@ -1565,6 +1566,5 @@ Github Issue 系列:
 <div style="text-align: center; margin-bottom: 100px; margin-top: 100px; font-family: 'Courier New', Courier, monospace; font-size: 24px; color: #4A90E2; padding-top: 20px;">
   <span style="background-color: #F2F2F2; padding: 10px; border-radius: 5px;">✨ The End ✨</span>
 </div>
-
 
 

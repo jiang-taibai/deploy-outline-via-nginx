@@ -72,7 +72,7 @@ X. Change Log
 
 # Architecture Diagram
 
-![Outline 架构图](docs/assets/1-architecture-diagram-v3.png)
+![Outline 架构图](docs/assets/1-architecture-diagram-v4.png)
 
 涉及到的Outline服务以及它的依赖服务: 
 
