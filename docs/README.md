@@ -78,7 +78,7 @@ Outline 是一个开源的知识库和团队协作工具🧠，旨在帮助团�
 
 下图为整个项目的系统架构: 
 
-![1-architecture-diagram](./assets/1-architecture-diagram-v2.png)
+![1-architecture-diagram](./assets/1-architecture-diagram-v3.png)
 
 涉及到的Outline服务以及它的依赖服务: 
 

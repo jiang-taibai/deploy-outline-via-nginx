@@ -1,8 +1,8 @@
-# 概述
+# Overview
 
 Outline 宣传图
 
-![0-outline-updated](./docs/assets/0-outline-updated.png)
+![0-outline-updated](docs/assets/0-outline-updated.png)
 
 本文介绍了一种基于 Nginx All In One 的网络架构部署 Outline 的方法，目录结构如下：
 
@@ -72,7 +72,7 @@ X. Change Log
 
 # Architecture Diagram
 
-![Outline 架构图](./docs/assets/1-architecture-diagram-v2.png)
+![Outline 架构图](docs/assets/1-architecture-diagram-v3.png)
 
 涉及到的Outline服务以及它的依赖服务: 
 
@@ -92,7 +92,7 @@ X. Change Log
 - `outline.example.com`: 用于访问 Outline 的主域名
 - `sso.example.com`: 提供身份权限验证服务，同时也是管理员入口
 - `minio.example.com`: MinIO API 为 Outline 提供对象存储服务 OSS
-- `minio.example.com`: MinIO Admin 界面
+- `minio-admin.example.com`: MinIO Admin 界面
 
 这种部署方式的优点如下: 
 
@@ -120,7 +120,7 @@ X. Change Log
 # Future Plans
 
 - [ ] 制作英文版文档
-- [ ] 创建 Outline 备份脚本
+- [ ] 尝试开发 Outline Backup Web UI
 
 # Change Log
 
