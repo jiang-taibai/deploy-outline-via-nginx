@@ -74,7 +74,7 @@ X. Change Log
 
 ![Outline 架构图](docs/assets/1-architecture-diagram-v4.png)
 
-涉及到的Outline服务以及它的依赖服务: 
+涉及到的Outline服务以及它的依赖服务:
 
 - **Outline**: 超级棒的团队多人协同文档管理开源项目！3000 端口为访问 Outline 的端口，但该端口并不暴露，由 Nginx 通过 Docker Network 方式访问
 - **Keycloak**: 一个支持 OpenID Connect（下文简称 **OIDC**）的开源项目。用于 Outline 的单点登录服务。
@@ -87,14 +87,14 @@ X. Change Log
 - **nginx_all_in_one**: Docker Network，使用虚拟网卡实现多个容器之间的网络互通
 - **Nginx**: 占用主机的 80, 443 端口并反代了四个域名，而反代的端口确实来自虚拟局域网中的端口，由图中可知整个网络只有 80 和 443 端口暴露在外。
 
-四个域名的作用: 
+四个域名的作用:
 
 - `outline.example.com`: 用于访问 Outline 的主域名
 - `sso.example.com`: 提供身份权限验证服务，同时也是管理员入口
 - `minio.example.com`: MinIO API 为 Outline 提供对象存储服务 OSS
 - `minio-admin.example.com`: MinIO Admin 界面
 
-这种部署方式的优点如下: 
+这种部署方式的优点如下:
 
 - **安全性更高**🔒: 所有服务均隐藏与虚拟局域网中，并在虚拟局域网中通信，不会暴露在互联网上
 - **门槛低**🎁: 全文所有服务项均使用 Docker 部署，并使用 Compose 插件，俗称开箱即用，部署难度大大降低。通常情况下，你只需要新建一个 `yaml` 配置文件和执行一条命令 `docker-compose up -d` 即可。
@@ -114,6 +114,7 @@ X. Change Log
 - **PostgreSQL**: [官方网站](https://www.postgresql.org/)
 - **MinIO**: [官方网站](https://min.io/)
 - **Keycloak**: [官方网站](https://www.keycloak.org/)
+- **Docsify**: [官方网站](https://docsify.js.org/#/)
 
 特别感谢这些项目的贡献者们！
 
@@ -127,19 +128,19 @@ X. Change Log
 ---
 
 - v1.0.0：2023年08月13日 22:03:24
-  - 完成第一版文档
+    - 完成第一版文档
 
 ---
 
 # Contact
 
-本文于2023年08月13日完成第一版，如有问题欢迎联系我😊: 
+本文于2023年08月13日完成第一版，如有问题欢迎联系我😊:
 
 - emailtojiang@gmail.com
 - emailtojiang@163.com
 
 # License
 
-[MIT](https://opensource.org/licenses/MIT) 
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />本作品采用<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a>进行许可。
 
 Copyright (c) 2023, Jiang Liu
