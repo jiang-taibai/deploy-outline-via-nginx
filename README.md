@@ -61,8 +61,13 @@ Outline 宣传图
     8.2 测试 PostgreSQL 基本功能
     8.3 测试 MinIO 基本功能
     8.4 更多功能
-9. 参考资料
-X. Change Log
+9. 问题汇总
+    9.1 Outline 更新方法
+    9.2 Outline 是否有桌面端？
+        9.2.1 PWA 解决方案
+        9.2.2 官方解决方案
+10. 参考资料
+Change Log
 ```
 
 你可以访问在线文档查看
