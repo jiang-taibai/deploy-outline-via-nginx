@@ -69,12 +69,13 @@ Outline 是一个开源的知识库和团队协作工具🧠，旨在帮助团�
 
 ## IV. Contact
 
-本文于2023年08月13日完成，如有问题欢迎联系我😊: 
+本文于2023年08月13日完成，最后更新时间2023年12月01日
 
-- emailtojiang@gmail.com
-- emailtojiang@163.com
+如有问题欢迎在 Gitee 或 GitHub 上提 Issue 😊:
 
+Gitee Issue：https://gitee.com/jiang-taibai/deploy-outline-via-nginx/issues
 
+GitHub Issue：https://github.com/jiang-taibai/deploy-outline-via-nginx/issues
 
 # 1. 架构图
 
@@ -1297,8 +1298,8 @@ RATE_LIMITER_REQUESTS=1000
 RATE_LIMITER_DURATION_WINDOW=60
 
 # Iframely API config
-IFRAMELY_URL=
-IFRAMELY_API_KEY=
+# IFRAMELY_URL=
+# IFRAMELY_API_KEY=
 ```
 
 
@@ -1470,9 +1471,6 @@ docker-compose -f outline-docker-compose.yaml up -d
 ![8-use-outline-03](./assets/8-use-outline-03.png)
 
 
-
-
-
 ## 8.3 测试 MinIO 基本功能
 
 在新建的文档内添加一个图片，该图片将上传到 MinIO 的 Outline Bucket 中
@@ -1495,9 +1493,67 @@ docker-compose -f outline-docker-compose.yaml up -d
 
 如此界面优美、功能齐全、多人实时协同、权限管理、可私人部署的开源 Wiki 项目，我不允许大家不知道！希望 Outline 能拥有更多的用户，变得更好~
 
+# 9. 问题汇总
 
+## 9.1 Outline 更新方法
 
-# 9. 参考资料
+参考 `7.2` 小节，你只需要修改 `yaml` 配置文件中的版本号
+
+`outline-docker-compose.yaml`内容参考：
+
+```yaml
+version: "3.8"
+services:
+  outline:
+    image: docker.io/outlinewiki/outline:修改成你想升级的版本号
+    container_name: outline
+    env_file: ./outline-docker.env
+    expose:
+      - 3000
+    networks:
+      - nginx_all_in_one
+networks:
+  nginx_all_in_one:
+    external: true
+```
+
+最后参考 `7.5` 小节重新启动（先 Down 后 Up）：
+
+```bash
+# 确保进入到 "outline-docker-compose.yaml" 同级目录
+cd /home/docker-compose/outline
+# 先关闭 outline
+docker-compose -f outline-docker-compose.yaml down
+# 使用 docker-compose 启动 outline
+docker-compose -f outline-docker-compose.yaml up -d
+```
+
+## 9.2 Outline 是否有桌面端？
+
+> 网友问题描述：想问下 Outline 有应用程序版本能连接私有化地址使用的方式吗？
+
+### 9.2.1 PWA 解决方案
+
+根据官方仓库的 [Discussion Desktop client with self-hosted server · outline_outline · Discussion #5512](https://github.com/outline/outline/discussions/5512)，提出了 PWA 的解决方案
+
+你可以访问 [Progressive Web App – Changelog – Outline – Team knowledge base & wiki](https://www.getoutline.com/changelog/progressive-web-app)
+
+大概流程就是：
+
+- 进入 Chrome 浏览器
+- 打开 Outline 地址栏右侧会出现安装
+
+![](./assets/problem-consultation/9.2.1-Chrome.png)
+
+安装后你可以在桌面上看到 Outline 的图标
+
+![](./assets/problem-consultation/9.2.1-DesktopIcon.png)
+
+### 9.2.2 官方解决方案
+
+当然官方也提供了桌面软件功能，但这需要包月服务。您可以在此查看详细的价格说明：https://www.getoutline.com/pricing
+
+# 10. 参考资料
 
 他人分享的部署教程系列：
 
@@ -1541,24 +1597,34 @@ Github Issue 系列:
 - 获取OIDC_CLIENT_SECRET：https://blog.csdn.net/MRLEE1212/article/details/103902379
 - Nginx 反代 Outline注意事项：https://docs.getoutline.com/s/hosting/doc/nginx-6htaRboR57
 
-
-
-# X. Change Log
+# Change Log
 
 ---
 
+- v1.1.0：2023年12月01日 11:16:02
+  - `Outline > 0.72.0` 后以下字段为出现时不可为空，因此注释即可（已在文档中做出相应更改）
+    ```properties
+    # Iframely API config
+    # IFRAMELY_URL=
+    # IFRAMELY_API_KEY=
+    ```
+  - 引导用户在 Issue 提问
+  - 添加问题咨询 “Outline 升级的办法”
+  - 添加问题咨询 “Outline 是否有桌面端”
 - v1.0.0：2023年08月13日 22:03:24
   - 完成第一版文档
 
-
 ---
 
 ---
 
-本文于2023年08月13日完成，如有问题欢迎联系我😊: 
+本文于2023年08月13日完成，最后更新时间2023年12月01日
 
-- emailtojiang@gmail.com
-- emailtojiang@163.com
+如有问题欢迎在 Gitee 或 GitHub 上提 Issue 😊:
+
+Gitee Issue：https://gitee.com/jiang-taibai/deploy-outline-via-nginx/issues
+
+GitHub Issue：https://github.com/jiang-taibai/deploy-outline-via-nginx/issues
 
 ---
 
