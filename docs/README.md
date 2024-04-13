@@ -205,16 +205,33 @@ docker network create nginx_all_in_one
 
 在这里约定本文中所有内容均放置在 `/home/docker-compose/` 目录下
 
+在创建 Nginx 之前，我们需要先获取 Nginx 的原版配置文件，这里我们可以先使用 `Nginx` 官方的 `Docker` 镜像，然后将配置文件拷贝出来
+
+```bash
+# 1. 先用docker创建nginx，复制对应文件
+docker run --name nginx-demo -d nginx
+# 2. 确保进入到 Nginx 项目位置
+mkdir -p /home/docker-compose/nginx
+cd /home/docker-compose/nginx
+# 3. 创建相应的文件夹
+mkdir -p ./data/conf/conf.d
+mkdir -p ./data/www
+# 4. 复制容器内的文件到宿主机
+docker cp nginx-demo:/etc/nginx/nginx.conf ./data/conf/nginx.conf
+docker cp nginx-demo:/etc/nginx/conf.d/default.conf ./data/conf/conf.d/default.conf
+docker cp nginx-demo:/usr/share/nginx/html ./data/www
+# 5. 最后删除容器
+docker stop nginx-demo && docker rm nginx-demo
+```
+
 首先创建文件夹和 `docker-compose.yaml`（`docker-compose` 默认以当前目录下的 `docker-compose.yaml` 启动，为了与后文中的 `yaml` 相区别，均使用相对清晰的名称以表示该 `yaml` 的作用）
 
 ```bash
-# 递归地创建文件夹
+# 递归地创建 Nginx 项目文件夹
 mkdir -p /home/docker-compose/nginx
 # 创建 nginx-docker-compose.yaml
 touch /home/docker-compose/nginx/nginx-docker-compose.yaml
 ```
-
-你不必新建 `data` 文件夹，因为在启动后会自动生成，所以暂时忽略之
 
 ![2-where-is-nginx-docker-compose](./assets/2-where-is-nginx-docker-compose.png)
 
@@ -247,13 +264,13 @@ networks:
 
 这里解释一下 Docker-Compose 配置文件中经常出现的字段以及释义，后文将不再赘述
 
-|        字段        |   解释   | 备注                                                         |
-| :----------------: | :------: | ------------------------------------------------------------ |
-|      `image`       |   镜像   | 此后的镜像都指定版本号，可自行升级新版，但不保证能适应新特性 |
-|      `ports`       | 端口暴露 | `ports` 暴露给宿主机，而 `expose` 仅暴露给同一局域网的其他容器 |
-|     `valumes`      |   挂载   | 在当前目录下保存 `Nginx` 数据以实现持久化                    |
-|     `networks`     |   网络   | 可选择多个网络，此处将 Nginx 连入 `nginx_all_in_one` 网络中  |
-| `nginx_all_in_one` | 网络名称 | 此处 `external: true` 表示该网络已经创建                     |
+|         字段         |  解释  | 备注                                          |
+|:------------------:|:----:|---------------------------------------------|
+|      `image`       |  镜像  | 此后的镜像都指定版本号，可自行升级新版，但不保证能适应新特性              |
+|      `ports`       | 端口暴露 | `ports` 暴露给宿主机，而 `expose` 仅暴露给同一局域网的其他容器    |
+|     `valumes`      |  挂载  | 在当前目录下保存 `Nginx` 数据以实现持久化                   |
+|     `networks`     |  网络  | 可选择多个网络，此处将 Nginx 连入 `nginx_all_in_one` 网络中 |
+| `nginx_all_in_one` | 网络名称 | 此处 `external: true` 表示该网络已经创建               |
 
 再执行以下命令启动 `Nginx`
 
@@ -1601,7 +1618,10 @@ Github Issue 系列:
 
 ---
 
-- v1.1.0：2023年12月01日 11:16:02
+- v1.2.0: 2024年04月13日 23:52:24
+  - 修复 Nginx 在部署前，需要先拷贝原始配置文件的问题 [#issues3](https://github.com/jiang-taibai/deploy-outline-via-nginx/issues/5)
+  - 添加本项目本地启动的说明
+- v1.1.0: 2023年12月01日 11:16:02
   - `Outline > 0.72.0` 后以下字段为出现时不可为空，因此注释即可（已在文档中做出相应更改）
     ```properties
     # Iframely API config
@@ -1611,14 +1631,14 @@ Github Issue 系列:
   - 引导用户在 Issue 提问
   - 添加问题咨询 “Outline 升级的办法”
   - 添加问题咨询 “Outline 是否有桌面端”
-- v1.0.0：2023年08月13日 22:03:24
+- v1.0.0: 2023年08月13日 22:03:24
   - 完成第一版文档
 
 ---
 
 ---
 
-本文于2023年08月13日完成，最后更新时间2023年12月01日
+本文于2023年08月13日完成，最后更新时间2024年04月13日
 
 如有问题欢迎在 Gitee 或 GitHub 上提 Issue 😊:
 
