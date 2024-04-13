@@ -1619,7 +1619,7 @@ Github Issue 系列:
 ---
 
 - v1.2.0: 2024年04月13日 23:52:24
-  - 修复 Nginx 在部署前，需要先拷贝原始配置文件的问题 [#issues3](https://github.com/jiang-taibai/deploy-outline-via-nginx/issues/5)
+  - 修复 Nginx 在部署前，需要先拷贝原始配置文件的问题 [#issues5](https://github.com/jiang-taibai/deploy-outline-via-nginx/issues/5)
   - 添加本项目本地启动的说明
 - v1.1.0: 2023年12月01日 11:16:02
   - `Outline > 0.72.0` 后以下字段为出现时不可为空，因此注释即可（已在文档中做出相应更改）
