@@ -224,7 +224,7 @@ docker cp nginx-demo:/usr/share/nginx/html ./data/www
 docker stop nginx-demo && docker rm nginx-demo
 ```
 
-首先创建文件夹和 `docker-compose.yaml`（`docker-compose` 默认以当前目录下的 `docker-compose.yaml` 启动，为了与后文中的 `yaml` 相区别，均使用相对清晰的名称以表示该 `yaml` 的作用）
+然后创建文件夹和 `docker-compose.yaml`（`docker-compose` 默认以当前目录下的 `docker-compose.yaml` 启动，为了与后文中的 `yaml` 相区别，均使用相对清晰的名称以表示该 `yaml` 的作用）
 
 ```bash
 # 递归地创建 Nginx 项目文件夹
