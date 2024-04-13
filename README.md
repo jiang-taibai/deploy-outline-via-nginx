@@ -107,6 +107,24 @@ Change Log
 - **非侵入式的环境友好型**🐳: 所有服务均使用 Docker 容器化部署，不会在服务器中创建一大堆的环境变量
 - **后期调试友好型**🔧: 所有服务均使用 Docker Compose 插件部署，所有配置项、密码等都保存在了服务器中，较原先的纯 Docker 部署而言，对于后期调试无需翻找当时设置的所有配置项。
 
+# About Project
+
+本项目基于 Docsify 构建，使用 Markdown 语法编写，通过 GitHub Page 和 Gitee Page 进行在线展示。
+
+如果你想在本地运行该项目，你可以使用以下命令：
+
+```bash
+# 克隆项目
+git clone https://github.com/jiang-taibai/deploy-outline-via-nginx.git
+cd deploy-outline-via-nginx
+# 安装 docsify-cli
+npm install -g docsify-cli
+# 运行项目
+docsify serve docs
+```
+
+然后访问 `http://localhost:3000` 即可查看本项目。
+
 # Friendly Link
 
 本文档使用了以下技术和服务：
@@ -127,6 +145,9 @@ Change Log
 
 ---
 
+- v1.2.0: 2024年04月13日 23:52:24
+  - 修复 Nginx 在部署前，需要先拷贝原始配置文件的问题 [#issues3](https://github.com/jiang-taibai/deploy-outline-via-nginx/issues/5)
+  - 添加本项目本地启动的说明
 - v1.1.0：2023年12月01日 11:16:02
   - `Outline > 0.72.0` 后以下字段为出现时不可为空，因此注释即可（已在文档中做出相应更改）
     ```properties
@@ -157,4 +178,4 @@ GitHub Issue：https://github.com/jiang-taibai/deploy-outline-via-nginx/issues
 
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />本作品采用<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a>进行许可。
 
-Copyright (c) 2023, Jiang Liu
+Copyright (c) 2023~Present, Jiang Liu
